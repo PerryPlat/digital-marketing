@@ -85,7 +85,7 @@ import pytumblr #텀블러
 from requests_oauthlib import OAuth1Session
 import config
 
-keywords = ['선풍기'] #키워드 입력
+keywords = ['20대'] #키워드 입력
 
 for keyword in keywords :
 
@@ -128,7 +128,7 @@ for keyword in keywords :
     product_links = [] #구매링크
     product_images = [] #상품이미지
 
-    for name in product_name[:10] :  #상품명 리스트 집어넣기
+    for name in product_name[:38] :  #상품명 리스트 집어넣기
         p_name = name.text
         p_name = p_name.replace('\n', '') #상품명 필터링1
         p_name = p_name.replace('  ', '') #상품명 필터링2
@@ -139,7 +139,7 @@ for keyword in keywords :
         #p_image = image.get('data-img-src')
         product_names.append(p_name)
 
-    for price in product_price[:10] :  #상품가격 리스트 집어넣기
+    for price in product_price[:38] :  #상품가격 리스트 집어넣기
         p_price = price.text
         p_price = p_price.replace(",", "")
         #p_price = price.text
@@ -148,7 +148,7 @@ for keyword in keywords :
         #p_image = image.get('data-img-src')
         product_prices.append(p_price)
 
-    for review in product_review[:10] : #상품리뷰 갯수 리스트 집어넣기
+    for review in product_review[:38] : #상품리뷰 갯수 리스트 집어넣기
         try :
             p_review_cnt = re.sub("[()]","", review.text)
         except :
@@ -156,12 +156,12 @@ for keyword in keywords :
         product_reviews.append(p_review_cnt)
 
 
-    for link in product_link[:10] : #상품구매링크 리스트 집어넣기
+    for link in product_link[:38] : #상품구매링크 리스트 집어넣기
         p_link = "https://www.coupang.com" + link['href']
         product_links.append(p_link)
 
 
-    for image in product_image[:10] : #상품이미지 리스트 집어넣기
+    for image in product_image[:38] : #상품이미지 리스트 집어넣기
         p_image = image.get('data-img-src')
         if p_image is None :
             p_image = image.get('src')
@@ -182,10 +182,9 @@ for keyword in keywords :
     ACCESS_KEY = "" #키를 입력하세요!
     SECRET_KEY = "" #키를 입력하세요!
 
-    for i in product_links[:10] :
+    for i in product_links[:38] :
         coupang_link = i #쿠팡링크
         REQUEST = { "coupangUrls": [coupang_link]} #해당 쿠팡링크 받기
-
         def generateHmac(method, url, api_secret_key, api_access_key):
             path, *query = url.split('?')
             os.environ['TZ'] = 'GMT+0'
@@ -229,7 +228,7 @@ for keyword in keywords :
     
 #엑셀 파일 저장
 
-f =  open('C:/Users/user/raw/coupang/search_results.csv', 'w', encoding='utf-8-sig') #csv파일 데이터 넣을거 생성
+f =  open('C:/Users/wjdwn/Downloads/Python/크롤링 파일들/search_results.csv', 'w', encoding='utf-8-sig') #csv파일 데이터 넣을거 생성
 f.write("keyword,product_names,product_prices,product_reviews,product_images,coupang_short_urls"+'\n') #컬럼명 입력
 
 #product_names = [] #상품명
@@ -241,7 +240,7 @@ f.write("keyword,product_names,product_prices,product_reviews,product_images,cou
 #top 10 기준 엑셀파일 저장
 #리뷰수는 믿지 말것! (수정해야됨)
  
-for i in range(0, 10) :
+for i in range(0, 38) :
     name = product_names[i]
     #print(test)
     name = name.replace('\n', '')

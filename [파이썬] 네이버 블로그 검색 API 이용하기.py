@@ -6,9 +6,9 @@ import hmac
 import base64
 import pandas as pd
 
-keyword = '애플워치 투명 밴드' #키워드검색
-client_id = "" #클라이언트 ID
-client_secret = "" #클라이언트 시크릿
+keyword = '카페 팝업스토어' #키워드검색
+client_id = "44IfO8DtEZAHUcXlun0N" #클라이언트 ID
+client_secret = "rO8r3x2qNE" #클라이언트 시크릿
 encText = urllib.parse.quote(keyword) 
 
 

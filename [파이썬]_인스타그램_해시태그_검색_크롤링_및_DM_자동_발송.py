@@ -7,8 +7,9 @@ from instagrapi import Client
 from instagrapi.types import StoryMention, StoryMedia, StoryLink, StoryHashtag
 
 cl = Client()
-cl.login('username', 
-		'password') #유저계정, 비밀번호
+cl.login('vylynnkuma', 
+		'Wnsgur10!!', verification_code='906236') #유저계정, 
+
     
 
 
@@ -16,7 +17,7 @@ cl.login('username',
 
 #해시태그 관련 정보 가져오기
 
-hash_keyword = '갤럭시워치4스트랩'
+hash_keyword = 'MTL'
 
 #hashtag  = cl.hashtag_info(hash_keyword) #해시태그 건수  
 
@@ -81,33 +82,33 @@ f.close()
 
 #인스타그램 최근게시물 top 100 기준
 
-f =  open('C:/Users/user/raw/instagram_info/hashtag_medias_recent.csv', 'w', encoding='utf-8-sig') #csv파일 데이터 넣을거 생성
-f.write("hashtags,instagram_url,username,insgta_followers,post_url,like_counts,comment_counts,user_info_biography_2"+'\n') #컬럼명 입력
+# f =  open('C:/Users/user/raw/instagram_info/hashtag_medias_recent.csv', 'w', encoding='utf-8-sig') #csv파일 데이터 넣을거 생성
+# f.write("hashtags,instagram_url,username,insgta_followers,post_url,like_counts,comment_counts,user_info_biography_2"+'\n') #컬럼명 입력
 
 
-for i in range(0, 26) : #Top 100
-    text = hashtag_medias_top_1[i].dict()
-    user = text['user']['username'] #계정명
-    user_url = "https://www.instagram.com/" + str(user)  #해당 인기 게시물 인스타 계정명
-    product = text['code'] #제품상세
-    product_url = "https://www.instagram.com/p/" + str(product) #인기 게시물 상세 페이지
-    comment_count = text['comment_count'] #댓글수
-    like_count = text['like_count'] #좋아요수
-    caption_text = text['caption_text'] #본문말 (해시태그 등)
-    #print(product_url)
+# for i in range(0, 26) : #Top 100
+#     text = hashtag_medias_top_1[i].dict()
+#     user = text['user']['username'] #계정명
+#     user_url = "https://www.instagram.com/" + str(user)  #해당 인기 게시물 인스타 계정명
+#     product = text['code'] #제품상세
+#     product_url = "https://www.instagram.com/p/" + str(product) #인기 게시물 상세 페이지
+#     comment_count = text['comment_count'] #댓글수
+#     like_count = text['like_count'] #좋아요수
+#     caption_text = text['caption_text'] #본문말 (해시태그 등)
+#     #print(product_url)
     
-    #유저정보
-    user_info= cl.user_info_by_username(user) #튜플형태임
-    time.sleep(3) #3초간격
-    user_info_text = user_info.dict()
-    user_info_media_count = user_info_text['media_count'] #게시물수
-    user_info_follower_count = user_info_text['follower_count'] #팔로워수
-    user_info_biography = user_info_text['biography'] #내용
-    user_info_biography_2 = user_info_biography.replace(",", "") #필터링
-    user_info_biography_2 = user_info_biography_2.replace("\n" ,"") #필터링
-    f.write(str(hash_keyword)+','+str(user_url)+','+str(user)+','+str(user_info_follower_count)+','+str(product_url)+','+str(like_count)+','+str(comment_count)+','+str(user_info_biography_2)   +'\n')
-print(str(hashtag) +" 의 키워드의 처리 완료")
+#     #유저정보
+#     user_info= cl.user_info_by_username(user) #튜플형태임
+#     time.sleep(3) #3초간격
+#     user_info_text = user_info.dict()
+#     user_info_media_count = user_info_text['media_count'] #게시물수
+#     user_info_follower_count = user_info_text['follower_count'] #팔로워수
+#     user_info_biography = user_info_text['biography'] #내용
+#     user_info_biography_2 = user_info_biography.replace(",", "") #필터링
+#     user_info_biography_2 = user_info_biography_2.replace("\n" ,"") #필터링
+#     f.write(str(hash_keyword)+','+str(user_url)+','+str(user)+','+str(user_info_follower_count)+','+str(product_url)+','+str(like_count)+','+str(comment_count)+','+str(user_info_biography_2)   +'\n')
+# print(str(hashtag) +" 의 키워드의 처리 완료")
 
-f.close()
+# f.close()
 
 
